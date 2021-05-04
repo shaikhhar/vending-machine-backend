@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Product } from '../product.entity';
@@ -34,14 +35,13 @@ describe('ProductService', () => {
 
   describe('createProduct', () => {
     it('should add product to product list', async () => {
-      const products = await productsService.createProduct({
+      await productsService.createProduct({
         name: 'Fanta',
         cost: 20,
         quantity: 5,
       });
-      expect(
-        (await productsService.listProducts()).map((product) => product.name),
-      ).toContain('Fanta');
+      const products = await productsService.listProducts();
+      expect( products.map(product=>product.name) ).toContain('Fanta');
     });
   });
 });

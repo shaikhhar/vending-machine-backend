@@ -1,8 +1,8 @@
-import { Repository } from 'typeorm';
+/* eslint-disable prettier/prettier */
 import { createProductDTO } from '../create-product-dto';
 import { Product } from '../product.entity';
 
-const productListInitial = [
+let mockProducts = [
   {
     id: 1,
     name: 'Coke',
@@ -17,25 +17,27 @@ const productListInitial = [
   },
 ];
 
-const toInsert = {
-  id: 3,
-  name: 'Dew',
-  cost: 30,
-  quantity: 10,
-};
 
 export const productRepositoryMockFactory = {
-  find: jest.fn().mockResolvedValue(productListInitial),
+  find: jest.fn().mockImplementation(() => Promise.resolve(mockProducts)),
   findOne: jest
     .fn()
     .mockImplementation((product: Product) =>
       Promise.resolve(
-        productListInitial.find((prod) => prod.name === product.name),
+        mockProducts.find((prod) => prod.name === product.name),
       ),
     ),
-  save: jest.fn().mockImplementation((createProductDTO: createProductDTO) => {
-    const product = { id: productListInitial.length, ...createProductDTO };
-    productListInitial.push(product);
-    Promise.resolve(productListInitial);
+  save: jest.fn().mockImplementation( (createProductDTO: createProductDTO) => {
+    const productIndex = mockProducts.findIndex(product => product.name === createProductDTO.name);
+    if(productIndex === -1){
+      const product = { id: mockProducts.length, ...createProductDTO };
+      mockProducts = [...mockProducts, product] ;
+      
+    }else {
+      const existingProduct = mockProducts[productIndex];
+      const updatedProduct = { ...existingProduct, ...createProductDTO };
+      mockProducts.splice(productIndex, 1, updatedProduct );
+    }    
+    Promise.resolve(mockProducts);
   }),
 };
