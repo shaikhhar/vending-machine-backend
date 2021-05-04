@@ -16,6 +16,8 @@ $ npm install
 $ start mysql server 
 $ create a database (eg: vending_machine )
 $ npm run start
+$ create product from /products/create endpoints (assumed to be Admin task)
+$ create paymentMode from /money/deposit endpoints (assumed to be Admin task)
 
 
 # watch mode
