@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { createProductDTO } from './create-product-dto';
@@ -15,16 +20,13 @@ export class ProductsService {
   }
 
   async createProduct(createProductDTO: createProductDTO): Promise<Product> {
-    // check if product name already exists
-    const existingProduct = await this.productRepository.findOne({
-      name: createProductDTO.name,
-    });
-    if (existingProduct) {
-      throw new HttpException('product already exists', HttpStatus.CONFLICT);
+    try {
+      const product: Product = await this.productRepository.save(
+        createProductDTO,
+      );
+      return product;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.CONFLICT);
     }
-    const product: Product = await this.productRepository.save(
-      createProductDTO,
-    );
-    return product;
   }
 }
