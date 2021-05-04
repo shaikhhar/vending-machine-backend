@@ -2,18 +2,22 @@
 import { DepositMoneyDTO, PaymentModeEnum } from '../money.dtos';
 import { Money } from '../money.entity';
 
-let mockMoney: Money[] = [
-  {
-    id: 1,
-    paymentMode: PaymentModeEnum.coin,
-    amount: 100,
-  },
-  {
-    id: 2,
-    paymentMode: PaymentModeEnum.cash,
-    amount: 50,
-  },
-];
+let mockMoney: Money[] = [];
+
+export const setMockMoney = ()=> {
+  mockMoney =[
+    {
+      id: 1,
+      paymentMode: PaymentModeEnum.coin,
+      amount: 100,
+    },
+    {
+      id: 2,
+      paymentMode: PaymentModeEnum.cash,
+      amount: 50,
+    },
+  ];
+}
 
 export const moneyRepositoryMockFactory = {
   find: jest.fn().mockImplementation(() => Promise.resolve(mockMoney)),
