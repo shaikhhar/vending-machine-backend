@@ -2,7 +2,6 @@
 import { HttpException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { PaymentModeEnum } from '../money.dtos';
 import { Money } from '../money.entity';
 import { MoneyService } from '../money.service';
 import { moneyRepositoryMockFactory, setMockMoney } from './moneyRepositoryMockFactory';
@@ -39,7 +38,7 @@ describe('MoneyService', () => {
   describe('depositMoney', () => {
     it('should increase money amount', async () => {
       await moneyService.depositMoney({
-        paymentMode: PaymentModeEnum.coin,
+        paymentMode: "coin",
         amount: 100,
       });
       const balance = await moneyService.checkBalance();
@@ -50,7 +49,7 @@ describe('MoneyService', () => {
   describe('withDrawMoney', () => {
     it('should reduce money amount', async () => {
       await moneyService.withdrawMoney({
-        paymentMode: PaymentModeEnum.coin,
+        paymentMode: "coin",
         amount: 50,
       });
       const balance = await moneyService.checkBalance();
@@ -60,7 +59,7 @@ describe('MoneyService', () => {
     it('should throw error if withdraw amount more than balance', async () => {
       try {
         await moneyService.withdrawMoney({
-          paymentMode: PaymentModeEnum.coin,
+          paymentMode: "coin",
           amount: 150,
         });
       } catch (error) {

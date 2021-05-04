@@ -4,7 +4,7 @@ import { MoneyService } from './money.service';
 
 @Controller('money')
 export class MoneyController {
-  // TODO: can later add controllers like /deposit , /withdraw and secured to be called by Admin only
+  // TODO: these can be secured to be called by Admin only
   constructor(private moneyService: MoneyService) {}
 
   @Post('deposit')

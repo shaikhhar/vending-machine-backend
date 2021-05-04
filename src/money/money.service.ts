@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   HttpCode,
   HttpException,
@@ -19,18 +20,24 @@ export class MoneyService {
   async depositMoney(depositMoneyDTO: DepositMoneyDTO) {
     const { amount, paymentMode } = depositMoneyDTO;
     const money = await this.moneyRepository.findOne({ paymentMode });
-    money.amount += amount;
-    await this.moneyRepository.save(money);
+    if(money){
+        money.amount += amount;
+        return await this.moneyRepository.save(money);
+        }
+    return await this.moneyRepository.save(depositMoneyDTO);    
   }
 
   async withdrawMoney(withdrawMoneyDTO: WithdrawMoneyDTO) {
     const { amount, paymentMode } = withdrawMoneyDTO;
     const money = await this.moneyRepository.findOne({ paymentMode });
+    if (!money) {
+      throw new HttpException('Invalid payment method',HttpStatus.UNAUTHORIZED );
+    }
     if (money.amount < amount) {
       throw new HttpException('Insufficient Balance', HttpStatus.UNAUTHORIZED);
     }
     money.amount -= amount;
-    await this.moneyRepository.save(money);
+    return await this.moneyRepository.save(money);
   }
 
   async checkBalance(): Promise<number> {

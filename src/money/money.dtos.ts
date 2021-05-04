@@ -1,13 +1,9 @@
 export class DepositMoneyDTO {
-  paymentMode: PaymentModeEnum;
+  paymentMode: string;
   amount: number;
 }
 
-export enum PaymentModeEnum {
-  'coin',
-  'cash',
-}
 export class WithdrawMoneyDTO {
-  paymentMode: PaymentModeEnum;
+  paymentMode: string;
   amount: number;
 }

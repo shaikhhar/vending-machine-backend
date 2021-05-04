@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { DepositMoneyDTO, PaymentModeEnum } from '../money.dtos';
+import { DepositMoneyDTO, } from '../money.dtos';
 import { Money } from '../money.entity';
 
 let mockMoney: Money[] = [];
@@ -8,12 +8,12 @@ export const setMockMoney = ()=> {
   mockMoney =[
     {
       id: 1,
-      paymentMode: PaymentModeEnum.coin,
+      paymentMode: "coin",
       amount: 100,
     },
     {
       id: 2,
-      paymentMode: PaymentModeEnum.cash,
+      paymentMode: "coin",
       amount: 50,
     },
   ];

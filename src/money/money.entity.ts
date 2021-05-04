@@ -1,5 +1,4 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { PaymentModeEnum } from './money.dtos';
 
 @Entity()
 export class Money {
@@ -7,7 +6,7 @@ export class Money {
   id: number;
 
   @Column()
-  paymentMode: PaymentModeEnum;
+  paymentMode: string;
 
   @Column()
   amount: number;
