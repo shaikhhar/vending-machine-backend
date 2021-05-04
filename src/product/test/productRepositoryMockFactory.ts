@@ -17,12 +17,13 @@ let mockProducts = [
   },
 ];
 
+export const getMockProducts = () => mockProducts;
 
 export const productRepositoryMockFactory = {
   find: jest.fn().mockImplementation(() => Promise.resolve(mockProducts)),
   findOne: jest
     .fn()
-    .mockImplementation((product: Product) =>
+    .mockImplementation((product:{name: string}) =>
       Promise.resolve(
         mockProducts.find((prod) => prod.name === product.name),
       ),
