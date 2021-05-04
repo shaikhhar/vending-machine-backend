@@ -14,6 +14,7 @@ $ npm install
 ```bash
 # development
 $ start mysql server 
+$ add database config details in env files: check samples .dev.env.example and .test.env.example
 $ create a database (eg: vending_machine )
 $ npm run start
 $ create product from /products/create endpoints (assumed to be Admin task)
