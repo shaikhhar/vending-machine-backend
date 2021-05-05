@@ -46,7 +46,8 @@ export class PurchaseService {
         product.quantity++ ;
         const coin:Money = await this.moneyRepository.findOne({ paymentMode: "coin" });
         const cash = await this.moneyRepository.findOne({ paymentMode: "cash" });
-        if(product.cost > (coin.amount + cash?.amount || 0)){
+
+        if(product.cost > (coin.amount + (cash?.amount || 0))){
             throw new HttpException('Unable to Refund, try again later', HttpStatus.UNAUTHORIZED);
         }
         let refund = {}

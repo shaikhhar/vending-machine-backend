@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "37e63949-0329-42e4-921a-2b1b3604e4ed",
+		"name": "Vending_machine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Dew\",\n    \"cost\":30,\n    \"quantity\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Money",
+			"item": [
+				{
+					"name": "Add Payment mode",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paymentMode\" : \"Coin\",\n    \"amount\":100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/money/deposit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"money",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "purchase",
+			"item": [
+				{
+					"name": "purchase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productName\": \"Coke\",\n  \"pur_quantity\": 2,\n  \"paymentMode\": \"coin\",\n  \"pur_amount\": 45\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/purchase",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refund",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\": \"Coke\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/purchase/refund",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"purchase",
+								"refund"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
