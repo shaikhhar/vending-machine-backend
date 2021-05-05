@@ -19,7 +19,7 @@ $ create a database (eg: vending_machine )
 $ npm run start
 $ create product from /products/create endpoints (assumed to be Admin task)
 $ create paymentMode from /money/deposit endpoints (assumed to be Admin task) 
-$ Refer to postman collection for more details about endpoints
+$ Use **Vending_machine.postman_collection.json** (in root folder) calling API endpoints
 
 
 # watch mode
